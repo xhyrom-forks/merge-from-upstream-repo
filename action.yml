@@ -43,7 +43,7 @@ runs:
         git branch --all
         git config --list
         git config user.email "${{ inputs.useremail }}"
-        git config user.name "{{ inputs.username }}"
+        git config user.name "${{ inputs.username }}"
         git checkout ${{ inputs.branch }}
         git merge --allow-unrelated-histories upstream/${{ inputs.upstream-branch }}
         git push 
