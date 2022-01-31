@@ -11,8 +11,10 @@ To merge multiple branches, create multiple jobs.
 To run action for another repository, you may need to create a [personal access token (PAT)](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
 ```yaml
       - name: Merge from upstream repo
-        uses: discdiver/merge-from-upstream-repo@v0.0.6
+        uses: discdiver/merge-from-upstream-repo@v0.0.9
         with:
+          useremail: ${{ github.event.inputs.useremail }}
+          username: ${{ github.event.inputs.usename }}
           upstream: ${{ github.event.inputs.upstream }}
           upstream-branch: ${{ github.event.inputs.upstream-branch }}
           branch: ${{ github.event.inputs.branch }}
@@ -40,7 +42,7 @@ jobs:
           ref: upstream             # set the branch to merge to
           fetch-depth: 0            # get all changes
       - name: Merge from upstream repo
-        uses: discdiver/merge-from-upstream-repo@v0.0.8
+        uses: discdiver/merge-from-upstream-repo@v0.0.9
         with:
           useremail                 # set the user email for git commits
           username                  # set the user name for git commits
@@ -106,7 +108,7 @@ jobs:
           ref: ${{ github.event.inputs.branch }}
           fetch-depth: 0 
       - name: Merge from upstream repo
-        uses: discdiver/merge-from-upstream-repo@v0.0.8
+        uses: discdiver/merge-from-upstream-repo@v0.0.9
         with:
           useremail:  ${{ github.event.inputs.useremail}}
           username:  ${{ github.event.inputs.username}
