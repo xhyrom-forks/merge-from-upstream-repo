@@ -16,6 +16,14 @@ inputs:
   branch:
     description: 'Branch to merge to. For example, main'
     default: 'main'
+  useremail: 
+    description: 'User email - required for git commits'
+    type: string
+    required: true
+  username:
+    description: "User name - required for git commits'
+    type: string
+    required: true
   token:
     description: >
       Personal access token (PAT) used to fetch the repository. The PAT is configured
