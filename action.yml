@@ -1,27 +1,27 @@
-name: "Merge Upstream"
-description: "Merge changes from the upstream repo you had forked from."
-author: "eXions"
+name: "Merge from upstream repo"
+description: "Merge changes from an upstream repo you forked."
+author: "discdiver"
 branding:
   icon: git-merge
   color: black
 
 inputs:
   upstream:
-    description: 'Upstream repository owner/name. For example, exions/merge-upstream'
+    description: 'Upstream repository owner/name. For example, discdiver/merge-from-upstream-repo'
     required: true
   upstream-branch:
     description: 'Upstream branch to merge from. For example, master'
-    default: 'master'
+    default: 'main'
   branch:
-    description: 'Branch to merge to. For example, master'
-    default: 'master'
+    description: 'Branch to merge to. For example, main'
+    default: 'main'
   token:
     description: >
       Personal access token (PAT) used to fetch the repository. The PAT is configured
       with the local git config, which enables your scripts to run authenticated git
       commands. The post-job step removes the PAT.
       We recommend using a service account with the least permissions necessary.
-      Also when generating a new PAT, select the least scopes necessary.
+      Also when generating a new PAT, follow the principle of least privlege to provide only the scopes necessary.
       [Learn more about creating and using encrypted secrets](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets)
     default: ${{ github.token }}
 
