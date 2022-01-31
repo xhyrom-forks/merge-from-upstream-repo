@@ -1,14 +1,14 @@
-# Merge Upstream
-Merge changes from an upstream repository branch into a current repository branch. For example, updating changes from the repository that was forked from.
+# Merge from upstream repo
+Merge changes from an upstream repository branch into a current repository branch. For example, updating changes from the repository that a repo was forked from.
+
+This action is based a fork of the no-longer-maintained *exions/merge-upstream*
 
 Current limitations:
-- only merge only selected branch
-- only work with public upstream Github repository
-- merge fast forward only (--ff-only)
+- only works with public upstream Github repository
 
 To merge multiple branches, create multiple jobs.
 
-To run action for another repository, create a [personal access token (PAT)](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+To run action for another repository, you may need to create a [personal access token (PAT)](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
 ```yaml
       - name: Merge Upstream
         uses: exions/merge-upstream@v1
@@ -40,7 +40,7 @@ jobs:
           ref: upstream             # set the branch to merge to
           fetch-depth: 0 
       - name: Merge Upstream
-        uses: exions/merge-upstream@v1
+        uses: discdiver/merge-from-upstream-repo@v0.0.1
         with:
           upstream: owner/repo      # set the upstream repo
           upstream-branch: master   # set the upstream branch to merge from
@@ -56,7 +56,7 @@ jobs:
           ref: another-branch       # set the branch to merge to
           fetch-depth: 0 
       - name: Merge Upstream
-        uses: exions/merge-upstream@v1
+        uses: discdiver/merge-from-upstream-repo@v0.0.1
         with:
           upstream: owner/repo              # set the upstream repo
           upstream-branch: another-branch   # set the upstream branch to merge from
@@ -90,13 +90,13 @@ on:
   workflow_dispatch:
     inputs:
       upstream:
-        description: 'Upstream repository owner/name. Eg. exions/merge-upstream'
+        description: 'Upstream repository owner/name (e.g. discdiver/merge-from-upstream-repo')'
         required: true
         default: 'owner/name'       # set the upstream repo
       upstream-branch:
-        description: 'Upstream branch to merge from. Eg. master'
+        description: 'Upstream branch to merge from (e.g. main)'
         required: true
-        default: 'master'           # set the upstream branch to merge from
+        default: 'main'           # set the upstream branch to merge from
       branch:
         description: 'Branch to merge to'
         required: true
@@ -112,7 +112,7 @@ jobs:
           ref: ${{ github.event.inputs.branch }}
           fetch-depth: 0 
       - name: Merge Upstream
-        uses: exions/merge-upstream@v1
+        uses: discdiver/merge-from-upstream-repo@v0.0.1
         with:
           upstream: ${{ github.event.inputs.upstream }}
           upstream-branch: ${{ github.event.inputs.upstream-branch }}
