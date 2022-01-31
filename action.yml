@@ -9,9 +9,11 @@ inputs:
 
   useremail: 
     description: 'User email - required for git commits'
+    type: string
     required: true
   username:
     description: "User name - required for git commits'
+    type: string
     required: true
   upstream:
     description: 'Upstream repository owner/name. For example, discdiver/merge-from-upstream-repo'
