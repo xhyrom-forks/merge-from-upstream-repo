@@ -11,7 +11,7 @@ To merge multiple branches, create multiple jobs.
 To run action for another repository, you may need to create a [personal access token (PAT)](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
 ```yaml
       - name: Merge Upstream
-        uses: exions/merge-upstream@v1
+        uses: discdiver/merge-from-upstream-repo@v0.0.4
         with:
           upstream: ${{ github.event.inputs.upstream }}
           upstream-branch: ${{ github.event.inputs.upstream-branch }}
@@ -40,7 +40,7 @@ jobs:
           ref: upstream             # set the branch to merge to
           fetch-depth: 0 
       - name: Merge Upstream
-        uses: discdiver/merge-from-upstream-repo@v0.0.1
+        uses: discdiver/merge-from-upstream-repo@v0.0.4
         with:
           upstream: owner/repo      # set the upstream repo
           upstream-branch: master   # set the upstream branch to merge from
@@ -56,7 +56,7 @@ jobs:
           ref: another-branch       # set the branch to merge to
           fetch-depth: 0 
       - name: Merge Upstream
-        uses: discdiver/merge-from-upstream-repo@v0.0.1
+        uses: discdiver/merge-from-upstream-repo@v0.0.4
         with:
           upstream: owner/repo              # set the upstream repo
           upstream-branch: another-branch   # set the upstream branch to merge from
@@ -112,7 +112,7 @@ jobs:
           ref: ${{ github.event.inputs.branch }}
           fetch-depth: 0 
       - name: Merge Upstream
-        uses: discdiver/merge-from-upstream-repo@v0.0.1
+        uses: discdiver/merge-from-upstream-repo@v0.0.4
         with:
           upstream: ${{ github.event.inputs.upstream }}
           upstream-branch: ${{ github.event.inputs.upstream-branch }}
