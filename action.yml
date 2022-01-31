@@ -21,7 +21,7 @@ inputs:
     type: string
     required: true
   username:
-    description: "User name - required for git commits'
+    description: 'User name - required for git commits'
     type: string
     required: true
   token:
