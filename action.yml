@@ -6,10 +6,10 @@ branding:
   color: black
 
 inputs:
-	useremail: 
+  useremail: 
     description: 'User email - required for git commits'
     required: true
-	username:
+  username:
     description: "User name - required for git commits'
     required: true
   upstream:
