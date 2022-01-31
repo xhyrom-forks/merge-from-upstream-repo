@@ -1,7 +1,7 @@
 {
     "private": true,
     "name": "merge-from-upstream-repo",
-    "version": "0.0.6",
+    "version": "0.0.8",
     "author": {
       "name": "discdiver",
       "email": "jeffmshale@gmail.com",
