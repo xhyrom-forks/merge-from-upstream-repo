@@ -42,7 +42,6 @@ jobs:
       - name: Merge from upstream repo
         uses: discdiver/merge-from-upstream-repo@v0.0.6
         with:
-          
           useremail                 # set the user email for git commits
           username                  # set the user name for git commits
           upstream: owner/repo      # set the upstream repo
@@ -81,7 +80,7 @@ on:
         description: 'User email - required for git commits'
         required: true
       username:
-        description: "User name - required for git commits'
+        description: 'User name - required for git commits'
         required: true
       upstream:
         description: 'Upstream repository owner/name (e.g. discdiver/merge-from-upstream-repo)'
@@ -108,6 +107,8 @@ jobs:
       - name: Merge from upstream repo
         uses: discdiver/merge-from-upstream-repo@v0.0.6
         with:
+          useremail:  ${{ github.event.inputs.useremail}}
+          username:  ${{ github.event.inputs.username}
           upstream: ${{ github.event.inputs.upstream }}
           upstream-branch: ${{ github.event.inputs.upstream-branch }}
           branch: ${{ github.event.inputs.branch }}
