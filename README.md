@@ -10,7 +10,7 @@ To merge multiple branches, create multiple jobs.
 
 To run action for another repository, you may need to create a [personal access token (PAT)](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
 ```yaml
-      - name: Merge Upstream
+      - name: Merge from upstream repo
         uses: discdiver/merge-from-upstream-repo@v0.0.4
         with:
           upstream: ${{ github.event.inputs.upstream }}
