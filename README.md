@@ -40,7 +40,7 @@ jobs:
           ref: upstream             # set the branch to merge to
           fetch-depth: 0            # get all changes
       - name: Merge from upstream repo
-        uses: discdiver/merge-from-upstream-repo@v0.0.6
+        uses: discdiver/merge-from-upstream-repo@v0.0.8
         with:
           useremail                 # set the user email for git commits
           username                  # set the user name for git commits
@@ -76,12 +76,7 @@ name: Manual Merge Remote Action
 on: 
   workflow_dispatch:
     inputs:
-      useremail: 
-        description: 'User email - required for git commits'
-        required: true
-      username:
-        description: 'User name - required for git commits'
-        required: true
+    
       upstream:
         description: 'Upstream repository owner/name (e.g. discdiver/merge-from-upstream-repo)'
         required: true
@@ -94,6 +89,12 @@ on:
         description: 'Branch to merge to'
         required: true
         default: 'main'         # set the branch to merge to
+      useremail: 
+        description: 'User email - required for git commits'
+        required: true
+      username:
+        description: 'User name - required for git commits'
+        required: true
 
 jobs:
   merge-from-upstream-repo:
@@ -105,7 +106,7 @@ jobs:
           ref: ${{ github.event.inputs.branch }}
           fetch-depth: 0 
       - name: Merge from upstream repo
-        uses: discdiver/merge-from-upstream-repo@v0.0.6
+        uses: discdiver/merge-from-upstream-repo@v0.0.8
         with:
           useremail:  ${{ github.event.inputs.useremail}}
           username:  ${{ github.event.inputs.username}
