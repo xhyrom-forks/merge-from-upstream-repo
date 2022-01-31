@@ -6,7 +6,7 @@ branding:
   color: black
 
 inputs:
-  useremail: 
+  auseremail: 
     description: 'User email - required for git commits'
     required: true
   username:
