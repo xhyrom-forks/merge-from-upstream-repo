@@ -6,10 +6,10 @@ branding:
   color: black
 
 inputs:
-  email: 
+  useremail: 
     description: 'User email - required for git commits'
     required: true
-  name:
+  username:
     description: "User name - required for git commits'
     required: true
   upstream:
@@ -39,8 +39,8 @@ runs:
         git remote -v
         git branch --all
         git config --list
-        git config user.email "${{ inputs.email }}"
-        git config user.name "{{ inputs.name }}"
+        git config user.email "${{ inputs.useremail }}"
+        git config user.name "{{ inputs.username }}"
         git checkout ${{ inputs.branch }}
         git merge --allow-unrelated-histories upstream/${{ inputs.upstream-branch }}
         git push 
