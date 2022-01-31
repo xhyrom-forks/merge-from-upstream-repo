@@ -1,5 +1,5 @@
 name: "Merge Upstream"
-description: "Merge changes from the uppstream repo you had forked from."
+description: "Merge changes from the upstream repo you had forked from."
 author: "eXions"
 branding:
   icon: git-merge
@@ -34,6 +34,6 @@ runs:
         git branch --all
         git config --list
         git checkout ${{ inputs.branch }}
-        git merge --ff-only upstream/${{ inputs.upstream-branch }}
+        git merge --allow-unrelated-histories upstream/${{ inputs.upstream-branch }}
         git push 
       shell: bash
