@@ -6,6 +6,12 @@ branding:
   color: black
 
 inputs:
+  email: 
+    description: 'User email - required for git commits'
+    required: true
+  name:
+    description: "User name - required for git commits'
+    required: true
   upstream:
     description: 'Upstream repository owner/name. For example, discdiver/merge-from-upstream-repo'
     required: true
@@ -33,6 +39,8 @@ runs:
         git remote -v
         git branch --all
         git config --list
+        git config user.email "${{ inputs.email }}"
+        git config user.name "{{ inputs.name }}"
         git checkout ${{ inputs.branch }}
         git merge --allow-unrelated-histories upstream/${{ inputs.upstream-branch }}
         git push 
