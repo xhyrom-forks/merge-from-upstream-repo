@@ -62,7 +62,18 @@ runs:
         git config user.email "${{ inputs.useremail }}"
         git config user.name "${{ inputs.username }}"
         git checkout ${{ inputs.branch }}
-        git update-index --assume-unchanged ${{ join(inputs.exclude, ' ') }}
-        git merge --allow-unrelated-histories upstream/${{ inputs.upstream-branch }}
+        git merge --allow-unrelated-histories --no-ff --no-commit upstream/${{ inputs.upstream-branch }}
+
+        INPUT=${{ join(inputs.exclude, ' ') }}
+        array=($INPUT)
+
+        for element in "${array[@]}"
+        do
+          git reset HEAD $element
+          git checkout -- $element
+        done
+
+        git commit -m "merged ${{ inputs.upstream-branch }}"
+
         git push
       shell: bash
