@@ -6,7 +6,6 @@ branding:
   color: black
 
 inputs:
-
   upstream:
     description: 'Upstream repository owner/name. For example, discdiver/merge-from-upstream-repo'
     required: true
@@ -26,7 +25,8 @@ inputs:
     required: true
   exclude:
     description: 'Files to exclude'
-    default: []
+    type: string
+    default: ""
   token:
     description: >
       Personal access token (PAT) used to fetch the repository. The PAT is configured
