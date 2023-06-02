@@ -24,6 +24,9 @@ inputs:
     description: 'User name - required for git commits'
     type: string
     required: true
+  exclude:
+    description: 'Files to exclude'
+    default: []
   token:
     description: >
       Personal access token (PAT) used to fetch the repository. The PAT is configured
@@ -37,7 +40,8 @@ inputs:
 runs:
   using: "composite"
   steps: 
-    - run: | 
+    - if: ${{ inputs.exclude == '' }}
+      run: | 
         git remote add -f upstream "https://github.com/${{ inputs.upstream }}.git"
         git remote -v
         git branch --all
@@ -46,5 +50,18 @@ runs:
         git config user.name "${{ inputs.username }}"
         git checkout ${{ inputs.branch }}
         git merge --allow-unrelated-histories upstream/${{ inputs.upstream-branch }}
+        git push 
+      shell: bash
+    - if: ${{ inputs.exclude != '' }}
+      run: | 
+        git remote add -f upstream "https://github.com/${{ inputs.upstream }}.git"
+        git remote -v
+        git branch --all
+        git config --list
+        git config user.email "${{ inputs.useremail }}"
+        git config user.name "${{ inputs.username }}"
+        git checkout ${{ inputs.branch }}
+        git merge --allow-unrelated-histories upstream/${{ inputs.upstream-branch }}
+        git update-index --assume-unchanged ${{ join(inputs.exclude, "") }}
         git push 
       shell: bash
