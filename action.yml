@@ -62,7 +62,6 @@ runs:
       shell: bash
     - if: ${{ inputs.exclude != '' }} && ${{ inputs.exclude-add-back == '' }}
       run: |
-        git config --global merge.ours.driver true
         git remote add -f upstream "https://github.com/${{ inputs.upstream }}.git"
         git remote -v
         git branch --all
@@ -77,7 +76,6 @@ runs:
       shell: bash
     - if: ${{ inputs.exclude != '' }} && ${{ inputs.exclude-add-back != '' }}
       run: |
-        git config --global merge.ours.driver true
         git remote add -f upstream "https://github.com/${{ inputs.upstream }}.git"
         git remote -v
         git branch --all
