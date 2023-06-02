@@ -31,6 +31,10 @@ inputs:
     description: "Files to exclude"
     type: string
     default: ""
+  exclude-add-back:
+    description: "Files to add back (when using exclude)"
+    type: string
+    default: ""
   token:
     description: >
       Personal access token (PAT) used to fetch the repository. The PAT is configured
@@ -56,7 +60,7 @@ runs:
         git merge --allow-unrelated-histories upstream/${{ inputs.upstream-branch }}
         git push
       shell: bash
-    - if: ${{ inputs.exclude != '' }}
+    - if: ${{ inputs.exclude != '' }} && ${{ inputs.exclude-add-back == '' }}
       run: |
         git config --global merge.ours.driver true
         git remote add -f upstream "https://github.com/${{ inputs.upstream }}.git"
@@ -69,6 +73,21 @@ runs:
         git merge --allow-unrelated-histories --no-commit upstream/${{ inputs.upstream-branch }}
         git rm -r --cached ${{ join(inputs.exclude, ' ') }}
         git commit -m "${{ inputs.commit-message }}"
-
+        git push
+      shell: bash
+    - if: ${{ inputs.exclude != '' }} && ${{ inputs.exclude-add-back != '' }}
+      run: |
+        git config --global merge.ours.driver true
+        git remote add -f upstream "https://github.com/${{ inputs.upstream }}.git"
+        git remote -v
+        git branch --all
+        git config --list
+        git config user.email "${{ inputs.useremail }}"
+        git config user.name "${{ inputs.username }}"
+        git checkout ${{ inputs.branch }}
+        git merge --allow-unrelated-histories --no-commit upstream/${{ inputs.upstream-branch }}
+        git rm -r --cached ${{ join(inputs.exclude, ' ') }}
+        git add ${{ join(inputs.exclude-add-back, ' ') }}
+        git commit -m "${{ inputs.commit-message }}"
         git push
       shell: bash

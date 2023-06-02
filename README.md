@@ -27,7 +27,8 @@ To run action for another repository, you may need to create a [personal access 
 ### Added by this fork
 
 - `commit-message`: set the commit message for the merge commit
-- `exclude`: exclude files from the merge commit (e.g. `exclude: "README.md .gitignore"`)
+- `exclude`: exclude files from the merge commit (e.g. `exclude: "README.md .gitignore .github/workflows/*"`)
+- `exclude-add-back`: add back excluded files after merge (e.g. `exclude-add-back: ".github/workflows/upstream.yml"`)
 
 ### Set up for scheduled trigger
 
