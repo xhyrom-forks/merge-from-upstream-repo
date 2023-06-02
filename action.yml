@@ -52,20 +52,16 @@ runs:
       run: |
         git remote add -f upstream "https://github.com/${{ inputs.upstream }}.git"
         git remote -v
-        git branch --all
-        git config --list
         git config user.email "${{ inputs.useremail }}"
         git config user.name "${{ inputs.username }}"
         git checkout ${{ inputs.branch }}
         git merge --allow-unrelated-histories upstream/${{ inputs.upstream-branch }}
         git push
       shell: bash
-    - if: ${{ inputs.exclude != '' }} && ${{ inputs.exclude-add-back == '' }}
+    - if: ${{ inputs.exclude != '' && inputs.exclude-add-back == '' }}
       run: |
         git remote add -f upstream "https://github.com/${{ inputs.upstream }}.git"
         git remote -v
-        git branch --all
-        git config --list
         git config user.email "${{ inputs.useremail }}"
         git config user.name "${{ inputs.username }}"
         git checkout ${{ inputs.branch }}
@@ -74,12 +70,10 @@ runs:
         git commit -m "${{ inputs.commit-message }}"
         git push
       shell: bash
-    - if: ${{ inputs.exclude != '' }} && ${{ inputs.exclude-add-back != '' }}
+    - if: ${{ inputs.exclude != '' && inputs.exclude-add-back != '' }}
       run: |
         git remote add -f upstream "https://github.com/${{ inputs.upstream }}.git"
         git remote -v
-        git branch --all
-        git config --list
         git config user.email "${{ inputs.useremail }}"
         git config user.name "${{ inputs.username }}"
         git checkout ${{ inputs.branch }}
