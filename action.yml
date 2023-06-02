@@ -7,24 +7,24 @@ branding:
 
 inputs:
   upstream:
-    description: 'Upstream repository owner/name. For example, discdiver/merge-from-upstream-repo'
+    description: "Upstream repository owner/name. For example, discdiver/merge-from-upstream-repo"
     required: true
   upstream-branch:
-    description: 'Upstream branch to merge from. For example, master'
-    default: 'main'
+    description: "Upstream branch to merge from. For example, master"
+    default: "main"
   branch:
-    description: 'Branch to merge to. For example, main'
-    default: 'main'
-  useremail: 
-    description: 'User email - required for git commits'
+    description: "Branch to merge to. For example, main"
+    default: "main"
+  useremail:
+    description: "User email - required for git commits"
     type: string
     required: true
   username:
-    description: 'User name - required for git commits'
+    description: "User name - required for git commits"
     type: string
     required: true
   exclude:
-    description: 'Files to exclude'
+    description: "Files to exclude"
     type: string
     default: ""
   token:
@@ -39,9 +39,9 @@ inputs:
 
 runs:
   using: "composite"
-  steps: 
+  steps:
     - if: ${{ inputs.exclude == '' }}
-      run: | 
+      run: |
         git remote add -f upstream "https://github.com/${{ inputs.upstream }}.git"
         git remote -v
         git branch --all
@@ -50,10 +50,10 @@ runs:
         git config user.name "${{ inputs.username }}"
         git checkout ${{ inputs.branch }}
         git merge --allow-unrelated-histories upstream/${{ inputs.upstream-branch }}
-        git push 
+        git push
       shell: bash
     - if: ${{ inputs.exclude != '' }}
-      run: | 
+      run: |
         git remote add -f upstream "https://github.com/${{ inputs.upstream }}.git"
         git remote -v
         git branch --all
@@ -62,6 +62,6 @@ runs:
         git config user.name "${{ inputs.username }}"
         git checkout ${{ inputs.branch }}
         git merge --allow-unrelated-histories upstream/${{ inputs.upstream-branch }}
-        git update-index --assume-unchanged ${{ join(inputs.exclude, "") }}
-        git push 
+        git update-index --assume-unchanged ${{ join(inputs.exclude, '') }}
+        git push
       shell: bash
