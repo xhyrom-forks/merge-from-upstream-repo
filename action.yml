@@ -62,8 +62,7 @@ runs:
         git config user.email "${{ inputs.useremail }}"
         git config user.name "${{ inputs.username }}"
         git checkout ${{ inputs.branch }}
-        echo "${{ join(inputs.exclude, ' ') }} merge=ours" >> .gitattributes
+        git update-index --assume-unchanged ${{ join(inputs.exclude, ' ') }}
         git merge --allow-unrelated-histories upstream/${{ inputs.upstream-branch }}
-        rm .gitattributes 
         git push
       shell: bash
