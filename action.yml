@@ -62,6 +62,6 @@ runs:
         git config user.name "${{ inputs.username }}"
         git checkout ${{ inputs.branch }}
         git merge --allow-unrelated-histories upstream/${{ inputs.upstream-branch }}
-        git update-index --assume-unchanged ${{ join(inputs.exclude, ' ') }}
+        git rm --cached ${{ join(inputs.exclude, ' ') }}
         git push
       shell: bash
