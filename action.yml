@@ -81,5 +81,5 @@ runs:
         git rm -r --cached ${{ join(inputs.exclude, ' ') }}
         git add ${{ join(inputs.exclude-add-back, ' ') }}
         git commit -m "${{ inputs.commit-message }}" || echo "Nothing to push"
-        git push || echo "Nothing to push"
+        git push
       shell: bash
