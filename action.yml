@@ -23,6 +23,10 @@ inputs:
     description: "User name - required for git commits"
     type: string
     required: true
+  commit-message:
+    description: "Commit message"
+    type: string
+    default: "Merge from upstream repo"
   exclude:
     description: "Files to exclude"
     type: string
@@ -64,7 +68,7 @@ runs:
         git checkout ${{ inputs.branch }}
         git merge --allow-unrelated-histories --no-commit upstream/${{ inputs.upstream-branch }}
         git rm -r --cached ${{ join(inputs.exclude, ' ') }}
-        git commit -m "merged ${{ inputs.upstream-branch }}"
+        git commit -m "${{ inputs.commit-message }}"
 
         git push
       shell: bash
