@@ -61,6 +61,7 @@ runs:
         git config user.email "${{ inputs.useremail }}"
         git config user.name "${{ inputs.username }}"
         git checkout ${{ inputs.branch }}
+        git rm --cached ${{ join(inputs.exclude, ' ') }}
         git merge --allow-unrelated-histories upstream/${{ inputs.upstream-branch }}
         git rm --cached ${{ join(inputs.exclude, ' ') }}
         git push
