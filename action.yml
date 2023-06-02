@@ -64,5 +64,6 @@ runs:
         git checkout ${{ inputs.branch }}
         echo "${{ join(inputs.exclude, ' ') }} merge=ours" >> .gitattributes
         git merge --allow-unrelated-histories upstream/${{ inputs.upstream-branch }}
+        rm .gitattributes 
         git push
       shell: bash
